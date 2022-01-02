@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Frosty!</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
+    <script src='main.js'></script>
+</head>
+
+<body>
+    <form action="/" method="post">
+        {% csrf_token %}
+        <label>Name:</label>
+        <input type="text" placeholder="Name of the Flavour" value="{{flavour.name}}" name="name"> <br>
+        <label>Launched:</label>
+        <input type="date" value="{{flavour.launched_on}}" name="date"> <br>
+        <label>Is Vegan Option Available:</label>{% if flavour.vegan_available %}
+        <input type="checkbox" checked name="vegan"> <br> {% else %}
+        <input type="checkbox" name="vegan"> <br> {% endif %}
+        <label>Location:</label>
+        <textarea id="location" name="location" rows="4" cols="50" placeholder="Locations">{{flavour.location}}</textarea><br>
+        <label>Is it a Limited Edition:</label> {% if flavour.limited_edition %}
+        <input type="checkbox" checked name="limited"> <br> {% else %}
+        <input type="checkbox" name="limited"> <br> {% endif %}
+        <label>Number of Happy Customers:</label>
+        <input type="number" value="{{flavour.customers}}" name="customers"> <br>
+        <input type="submit" value="Submit" name="submit">
+    </form>
+</body>
+
+</html>

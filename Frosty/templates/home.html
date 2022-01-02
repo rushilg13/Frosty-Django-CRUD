@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        th,
+        td {
+            border: 1px black solid;
+        }
+    </style>
+</head>
+
+<body>
+    {% if info %}
+    <h1>Show Data</h1>
+    <table style="text-align: center;">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Launched On</th>
+            <th>Is Vegan Option Available</th>
+            <th>Locations</th>
+            <th>Is It Limited Edition</th>
+            <th>Number of Happy Customers</th>
+            <th>Operations</th>
+        </tr>
+        <tr>
+            {% for st in info %}
+            <td>{{st.id}}</td>
+            <td>{{st.name}}</td>
+            <td>{{st.launched_on}}</td>
+            <td>{{st.vegan_available}}</td>
+            <td>{{st.location}}</td>
+            <td>{{st.limited_edition}}</td>
+            <td>{{st.customers}}</td>
+            <td><a href="add/{{st.id}}"><button>Update</button> </a>
+            <a href="delete/{{st.id}}"><button>Delete</button> </a></td>
+        </tr>
+        {% endfor %}
+        <td><a href="add/"><button>Add</button> </a></td>
+    </table>
+    {% else %}
+    <h1>No Data</h1>
+    <a href="add/"><button>Add</button> </a> {% endif %}
+</body>
+
+</html>
